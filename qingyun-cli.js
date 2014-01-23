@@ -69,6 +69,6 @@ var command = {
 
 var url = GenerateURL(command);
 
-var url = GenerateSignature(method, uri, url);
+url = GenerateSignature(method, uri, url);
 
 SendRequest(method, uri, url);
