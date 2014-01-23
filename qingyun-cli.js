@@ -12,7 +12,12 @@ function GenerateSignature (method, uri, url) {
     var signature = crypto.createHmac('sha1', secrectAccessKey).update(
         method + '\n' + uri + '\n' + url).digest();
 
-    return url + '&signature=' + new Buffer(signature).toString('base64');
+    var base64 = new Buffer(signature).toString('base64');
+    for (x in base64) {
+    	if (base64[x] == ' ') base64[x] = '+';
+    }
+
+    return url + '&signature=' + base64;
 }
 
 function SendRequest (method, uri, url) {
